@@ -1,16 +1,33 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 export default function Profile() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <section id="profile" className="py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex flex-col items-center text-center space-y-6">
-          <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-zinc-200 dark:border-zinc-800">
-            <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-5xl font-bold">
+          <div className={`
+            relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-zinc-200 dark:border-zinc-800
+            transition-all duration-1000 transform
+            ${isVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 rotate-180'}
+          `}>
+            <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-5xl font-bold animate-pulse">
               G
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <div className={`
+            space-y-3 transition-all duration-1000 delay-300
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+          `}>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               건호류
             </h1>
             <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400">
@@ -18,7 +35,11 @@ export default function Profile() {
             </p>
           </div>
 
-          <p className="max-w-2xl text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className={`
+            max-w-2xl text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed
+            transition-all duration-1000 delay-500
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+          `}>
             안녕하세요! 저는 열정적인 개발자이자 크리에이터입니다.
             새로운 기술을 배우고 멋진 프로젝트를 만드는 것을 좋아합니다.
           </p>
